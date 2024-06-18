@@ -55,6 +55,12 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - name: setup package-manager
+        env:
+          Manager: ${{ steps.detect-package-manager.outputs.manager }}
+        run: |
+          corepack enable
+          corepack use $Manager
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:

@@ -1,9 +1,17 @@
+<script lang="ts" setup>
+</script>
+
 <template>
   <header>
     <NuxtLink to="/" :class="$style.header_link">
-      <NuxtImg :class="$style.logo" width="40px" height="40px" src="" alt="" />
+      <NuxtImg :class="$style.logo" width="40px" height="40px" src="https://avatars.githubusercontent.com/u/40626578?v=4" alt="" />
       taichanのサイト
     </NuxtLink>
+
+    <div :class="$style.links">
+      <NuxtLink to="/links">Links</NuxtLink>
+    </div>  
+
   </header>
   <div :class="$style.page">
     <slot />
@@ -20,6 +28,7 @@
   --text-normal: #5f5f5f;
   --text-normal-rgb: 95, 95, 95;
   --text-sub: #fafafa;
+  --text-sub-rgb: 250, 250, 250;
   --text-link: #1bacb6;
   --border-radius: 12px;
   color: var(--text-normal);
@@ -54,6 +63,7 @@ html, body {
 
 header {
   align-items: center;
+  justify-content: space-between;
   background-color: var(--accent);
   color: var(--text-sub);
   display: flex;
@@ -73,12 +83,16 @@ header a {
   font-weight: 500;
 }
 
+.links {
+  margin-right: 8px;
+}
+
 .logo {
   border: var(--accent) 1px solid;
   height: 40px;
   width: 40px;
-  margin: 0 12px;
-  display: none;
+  margin: 0 8px;
+  border-radius: 50%;
 }
 
 .page {

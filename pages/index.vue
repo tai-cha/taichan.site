@@ -5,7 +5,7 @@ const descriptions = [
   'A Misskey Server Operator',
   'A Human',
   'A Gamer',
-  'A Tach Otaku'
+  'A Tech Otaku'
 ]
 
 useSeoMeta({

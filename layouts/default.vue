@@ -165,4 +165,10 @@ ul {
 a {
   font-weight: bold;
 }
+
+code {
+  background-color: rgba(var(--bg-sub-rgb), 0.5);
+  padding: 4px;
+  border-radius: 4px;
+}
 </style>

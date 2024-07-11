@@ -18,6 +18,8 @@
 - etc...
 
 [GitHubはこちら](http://github.com/tai-cha)
+
+[このサイト、うるサイトwww](/docs/gyagu)
 </section>
 
 ---

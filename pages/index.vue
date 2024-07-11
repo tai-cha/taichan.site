@@ -53,7 +53,7 @@ const descriptions = [
     }
     background-color: var(--accent);
     border: 2px solid var(--text-normal);
-    color: var(--text-normal);
+    color: var(--text-sub);
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 40px;

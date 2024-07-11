@@ -10,7 +10,8 @@
 
     <div :class="$style.links">
       <NuxtLink to="/links">Links</NuxtLink>
-    </div>  
+      <ThemeSwitcher />
+    </div>
 
   </header>
   <div :class="$style.page">
@@ -18,8 +19,14 @@
   </div>
   <footer></footer>
 </template>
-<style module>
+<style>
 :root {
+  color: var(--text-normal);
+  font-family: 'Yu Gothic', 'YuGothic', '游ゴシック', '游ゴシック体', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+  --border-radius: 12px;
+}
+
+html:not(.theme-dark) {
   --accent: #0095af;
   --bg: #a7ccd3;
   --bg-rgb: 254, 218, 218;
@@ -30,25 +37,21 @@
   --text-sub: #fafafa;
   --text-sub-rgb: 250, 250, 250;
   --text-link: #1bacb6;
-  --border-radius: 12px;
-  color: var(--text-normal);
-
-  font-family: 'Yu Gothic', 'YuGothic', '游ゴシック', '游ゴシック体', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #688d94;
-    --bg-rgb: 104, 141, 148;
-    --bg-sub: #808080;
-    --bg-sub-rgb: 63, 63, 63;
-    --text-normal: #ffffff;
-    --text-normal-rgb: 255, 255, 255;
-    --text-sub: #fafafa;
-    --text-link: #20eefd;
-  }
+html.theme-dark {
+  --accent: #0095af;
+  --bg: #688d94;
+  --bg-rgb: 104, 141, 148;
+  --bg-sub: #808080;
+  --bg-sub-rgb: 63, 63, 63;
+  --text-normal: #ffffff;
+  --text-normal-rgb: 255, 255, 255;
+  --text-sub: #fafafa;
+  --text-link: #20eefd;
 }
-
+</style>
+<style module>
 a {
   color: var(--text-link);
 }
@@ -84,6 +87,9 @@ header a {
 }
 
 .links {
+  align-items: center;
+  display: flex;
+  gap: 8px;
   margin-right: 8px;
 }
 

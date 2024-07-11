@@ -46,11 +46,11 @@ onMounted(() => {
 <style module>
 .display {
   &::after {
-    color: rgba(var(--text-sub-rgb), 0.5);
+    color: rgba(var(--text-normal-rgb), 0.5);
     content: '▮';
     animation: blink 1s step-end infinite;
   }
-  color: var(--text-sub);
+  color: var(--text-normal);
   font-size: 20px;
   font-family: Arial, sans-serif;
   margin: 20px 0;

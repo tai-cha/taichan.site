@@ -7,6 +7,10 @@ const descriptions = [
   'A Gamer',
   'A Tach Otaku'
 ]
+
+useSeoMeta({
+  title: 'Home'
+})
 </script>
 
 <template>

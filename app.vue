@@ -46,7 +46,7 @@ useHead({
     }
   ],
   titleTemplate: (titleChunk) => {
-    return `${titleChunk ? titleChunk + ' | ' : ''}` + '| taichanのサイト';
+    return `${titleChunk ? titleChunk + ' | ' : ''}` + 'taichanのサイト';
   }
 })
 </script>

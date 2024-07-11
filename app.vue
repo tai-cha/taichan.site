@@ -16,20 +16,16 @@ onMounted(() => {
   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
     colorScheme.value = 'dark';
     useHtmlClass().addClass('theme-dark');
-    useHtmlClass().removeClass('theme-light');
   } else {
     colorScheme.value = 'light';
     useHtmlClass().addClass('theme-light');
-    useHtmlClass().removeClass('theme-dark');
   }
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     colorScheme.value = e.matches ? 'dark' : 'light';
     if (colorScheme.value === 'light') {
-      useHtmlClass().removeClass('theme-dark');
-      useHtmlClass().addClass('theme-light');
+      useHtmlClass().replaceClass('theme-dark', 'theme-light');
     } else {
-      useHtmlClass().removeClass('theme-light');
-      useHtmlClass().addClass('theme-dark');
+      useHtmlClass().replaceClass('theme-light', 'theme-dark');
     }
   });
   //#endregion

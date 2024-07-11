@@ -8,11 +8,9 @@ const toggleTheme = () => {
   colorScheme.value = colorScheme.value === 'light' ? 'dark' : 'light';
 
   if (colorScheme.value === 'light') {
-    useHtmlClass().addClass('theme-light');
-    useHtmlClass().removeClass('theme-dark');
+    useHtmlClass().replaceClass('theme-dark', 'theme-light');
   } else {
-    useHtmlClass().addClass('theme-dark');
-    useHtmlClass().removeClass('theme-light');
+    useHtmlClass().replaceClass('theme-light', 'theme-dark');
   }
 };
 

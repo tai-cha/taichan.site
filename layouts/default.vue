@@ -26,7 +26,7 @@
   --border-radius: 12px;
 }
 
-html:not(.theme-dark) {
+html.theme-light {
   --accent: #0095af;
   --bg: #a7ccd3;
   --bg-rgb: 254, 218, 218;
@@ -50,6 +50,35 @@ html.theme-dark {
   --text-sub: #fafafa;
   --text-link: #20eefd;
 }
+
+@media (prefers-color-scheme: light) or (prefers-color-scheme: no-preference){
+  html:not(.theme-light):not(.theme-dark) {
+    --accent: #0095af;
+    --bg: #a7ccd3;
+    --bg-rgb: 254, 218, 218;
+    --bg-sub: #EEEEEE;
+    --bg-sub-rgb: 238, 238, 238;
+    --text-normal: #5f5f5f;
+    --text-normal-rgb: 95, 95, 95;
+    --text-sub: #fafafa;
+    --text-sub-rgb: 250, 250, 250;
+    --text-link: #1bacb6;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.theme-light):not(.theme-dark) {
+    --accent: #0095af;
+    --bg: #688d94;
+    --bg-rgb: 104, 141, 148;
+    --bg-sub: #808080;
+    --bg-sub-rgb: 63, 63, 63;
+    --text-normal: #ffffff;
+    --text-normal-rgb: 255, 255, 255;
+    --text-sub: #fafafa;
+    --text-link: #20eefd;
+  }
+}
 </style>
 <style module>
 a {
@@ -62,6 +91,11 @@ html, body {
 
   background-color: var(--bg);
   line-height: 1.6;
+}
+
+main {
+  width: 100%;
+  padding: 20px;
 }
 
 header {
@@ -113,7 +147,7 @@ h1 {
   font-size: 28px;
   font-weight: 700;
   border-bottom: 1px solid rgba(var(--text-normal-rgb), 0.5);
-  margin: 16px 0;
+  margin: 0 0 16px 0;
   & > a {
     color: var(--text-normal);
     text-decoration: none;
@@ -124,7 +158,7 @@ h2 {
   font-size: 24px;
   font-weight: 700;
   padding: 0;
-  margin: 32px 0 16px 0;
+  margin: px 0 16px 0;
   & > a {
     color: var(--text-normal);
     text-decoration: none;

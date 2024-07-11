@@ -1,23 +1,21 @@
-import { ref, watchEffect } from 'vue';
-
 export function useHtmlClass() {
-  const classes = ref<Set<string>>(new Set());
+  const documentElement = document.documentElement
 
   const addClass = (className: string) => {
-    classes.value.add(className);
+    documentElement.classList.add(className)
   };
 
   const removeClass = (className: string) => {
-    classes.value.delete(className);
+    documentElement.classList.remove(className)
+  };
+
+  const replaceClass = (oldClassName: string, newClassName: string) => {
+    documentElement.classList.replace(oldClassName, newClassName)
   };
 
   const getClasses = () => {
-    return Array.from(classes.value);
+    return documentElement.classList
   };
 
-  watchEffect(() => {
-    document.documentElement.className = Array.from(classes.value).join(' ');
-  });
-
-  return { addClass, removeClass, getClasses };
+  return { addClass, removeClass, replaceClass, getClasses };
 }

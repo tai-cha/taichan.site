@@ -22,16 +22,14 @@ useSeoMeta({
       <NuxtLink to="/about" :class="$style.readMore">Read more about me</NuxtLink>
       <span><Icon :class="$style.icon" name="uil:github" color="black" /><a href="https://github.com/tai-cha">GitHub (tai-cha)</a></span>
       <span><Icon :class="$style.icon" name="uil:twitter" color="#1DA1F2" /><a href="https://twitter.com/taichan_v2">Twitter (@taichan_v2)</a></span>
+
+      <span :class="$style.guideForNadesskey">もしかしてお探しのサイトは: <a href="mi.taichan.site"><Icon :class="$style.icon" name="tai:nadesskey" />なですきー</a></span>
     </div>
   </main>
 </template>
 <style module>
   h2 {
     text-decoration: none;
-  }
-  main {
-    width: 100%;
-    padding: 20px;
   }
 
   .name {
@@ -68,12 +66,14 @@ useSeoMeta({
 
     text-decoration: none;
   }
-</style>
 
-<style scoped>
-.icon {
-  vertical-align: text-bottom;
-  width: 1.4em;
-  height: 1.4em;
-}
+  .guideForNadesskey {
+    margin-top: 20px;
+  }
+
+  .icon {
+    vertical-align: text-bottom;
+    width: 1.4em;
+    height: 1.4em;
+  }
 </style>

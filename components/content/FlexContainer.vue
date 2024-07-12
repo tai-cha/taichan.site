@@ -33,6 +33,7 @@ const classes = computed(() => [
   display: flex;
   gap: v-bind(gap);
   flex-direction: v-bind(direction);
+  flex-wrap: wrap;
 }
 
 .container.inherit {
@@ -40,6 +41,7 @@ const classes = computed(() => [
     display: flex;
     gap: v-bind(gap);
     flex-direction: v-bind(direction);
+    flex-wrap: wrap;
   }
 }
 

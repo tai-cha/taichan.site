@@ -139,7 +139,7 @@ header a {
 }
 
 .page {
-  background-color: rgba(var(--bg-sub-rgb), 0.45);
+  background-color: rgba(var(--bg-sub-rgb), 0.55);
   border-radius: var(--border-radius);
   display: flex;
   margin: 12px 16px;

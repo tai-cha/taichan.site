@@ -16,7 +16,7 @@
     "@nuxt/icon": "^1.0.0",
     "@nuxt/image": "^1.7.0",
     "aiscript-vscode": "file:./aiscript-vscode/aiscript/syntaxes",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.12.3",
     "nuxt-gtag": "^2.0.6",
     "sass": "^1.77.8"
   },

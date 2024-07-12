@@ -3,6 +3,7 @@ import type { BundledTheme } from "shiki";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+
   modules: [
     '@nuxt/content',
     '@nuxthq/studio',
@@ -10,11 +11,13 @@ export default defineNuxtConfig({
     "@nuxt/icon",
     "nuxt-gtag"
   ],
+
   icon: {
     customCollections: [
       { prefix: 'tai', dir: './assets/my-icons' }
     ]
   },
+
   app: {
     head: {
       htmlAttrs: {
@@ -31,6 +34,7 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   content: {
     highlight: {
       theme: {
@@ -41,21 +45,26 @@ export default defineNuxtConfig({
       langs: ['js','ts','jsx','tsx','json','json5','vue','css','html','vue','shell','bash','zsh','ruby','yml','docker','bat','csharp','sql','diff','erb','md','ps','sass',]
     },
   },
+
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     }
   },
+
   vite: {
     build: {
       target: ['es2022', 'edge89', 'firefox89', 'chrome89', 'safari15']
     },
   },
+
   nitro: {
     esbuild: {
       options: {
         target: 'es2022'
       }
     }
-  }
+  },
+
+  compatibilityDate: '2024-07-13',
 })

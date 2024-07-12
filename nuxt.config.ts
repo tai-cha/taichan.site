@@ -63,6 +63,17 @@ export default defineNuxtConfig({
       options: {
         target: 'es2022'
       }
+    },
+    prerender: {
+      crawlLinks: true,
+      routes: [
+        '/',
+        '/about',
+        '/blog',
+        '/news',
+        '/docs',
+        '/links'
+      ]
     }
   },
 

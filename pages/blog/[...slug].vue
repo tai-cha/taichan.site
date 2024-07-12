@@ -20,6 +20,7 @@ useSeoMeta({
   ogImage: `${runtimeConfig.public.baseUrl}${page.value.thumbnail}`,
   articlePublishedTime: page.value.createdAt,
   articleModifiedTime: page.value.updatedAt,
+  twitterImage: `${runtimeConfig.public.baseUrl}${page.value.thumbnail}`,
   twitterCard: 'summary_large_image',
   robots: page.value.noindex ? 'noindex' : undefined,
 })

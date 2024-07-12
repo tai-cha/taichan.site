@@ -31,6 +31,8 @@ export default defineNuxtConfig({
         { property: 'og:type', content: 'website' },
         { property: 'og:site_name', content: 'taichanのサイト' },
         { property: 'og:image', content: 'https://taichan.site/default-ogp.png', },
+        { property: 'twitter:image', content: 'https://taichan.site/default-ogp.png' },
+        { property: 'twitter:card', content: 'summary_large_image' },
       ]
     }
   },

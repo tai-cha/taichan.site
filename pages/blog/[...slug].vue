@@ -37,6 +37,10 @@ definePageMeta({
         <span :class="$style.createdAt">公開日: <time :datetime="doc.createdAt">{{ showDate(doc.createdAt) }}</time></span>
         <span v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :class="$style.updatedAt">更新日: <time v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :datetime="doc.createdAt">{{ showDate(doc.updatedAt) }}</time></span>
         <ContentRenderer :value="doc" />
+        <hr :class="$style.endingHR">
+        <div>
+          タグ: <span v-for="tag in doc.tags" :class="$style.tag">{{ tag }}</span>
+        </div>
       </template>
       <template #not-found>
         <h1>404 Not Found</h1>
@@ -71,5 +75,17 @@ definePageMeta({
     text-align: right;
     font-size: 0.8em;
     color: var(--text-normal);
+  }
+
+  .endingHR {
+    margin: 24px 0;
+  }
+
+  .tag {
+    background-color: var(--bg);
+    color: var(--text-normal);
+    padding: 4px 8px;
+    margin: 4px;
+    border-radius: 8px;
   }
 </style>

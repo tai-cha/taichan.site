@@ -7,6 +7,7 @@
         <div :class="$style.details">
           <div :class="$style.title">{{ page.title }}</div>
           <div :class="$style.description">{{ page.description }}</div>
+          <div v-if="page.tags" :class="$style.tags">タグ: <span v-for="tag in page.tags" :class="$style.tag">{{ tag }}</span></div>
           <div :class="$style.createdAt"><time :datetime="page.createdAt">{{ showDate(page.createdAt) }}</time></div>
         </div>
       </a>
@@ -14,7 +15,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-const { data: blogs } = await useAsyncData('blogs', () => queryContent('blog').only(['_path', 'title', 'description', 'thumbnail', 'createdAt', 'updatedAt', 'draft']).where({ draft: false }).find())
+const { data: blogs } = await useAsyncData('blogs', () => queryContent('blog').only(['_path', 'title', 'description', 'tags', 'thumbnail', 'createdAt', 'updatedAt', 'draft']).where({ draft: false }).find())
 const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 
 useHead({
@@ -89,6 +90,19 @@ useHead({
 .createdAt {
   font-size: 14px;
   text-align: right;
+}
+
+.tag {
+  background-color: var(--bg);
+  color: var(--text-normal);
+  padding: 4px 8px;
+  margin: 4px;
+  border-radius: 8px;
+}
+
+.tags {
+  text-align: right;
+  font-size: 14px;
 }
 
 /* Non PC */

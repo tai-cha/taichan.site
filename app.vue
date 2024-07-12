@@ -7,6 +7,9 @@
 import { provide } from 'vue';
 import { useHtmlClass } from './composables/useHtmlClass';
 
+const router = useRouter();
+const currentUrl = computed(() => `https://taichan.site${router.currentRoute.value.path}`);
+
 type colorScheme = 'light' | 'dark';
 const colorScheme = ref<colorScheme>('light');
 provide('colorScheme', colorScheme);
@@ -36,10 +39,7 @@ useHead({
     lang: 'ja'
   },
   meta: [
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
-    }
+    { property: 'og:url', content: currentUrl }
   ],
   titleTemplate: (titleChunk) => {
     return `${titleChunk ? titleChunk + ' | ' : ''}` + 'taichanのサイト';

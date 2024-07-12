@@ -9,6 +9,7 @@
     </NuxtLink>
 
     <div :class="$style.links">
+      <NuxtLink to="/blog">Blog</NuxtLink>
       <NuxtLink to="/links">Links</NuxtLink>
       <ThemeSwitcher />
     </div>
@@ -48,6 +49,7 @@ html.theme-dark {
   --text-normal: #ffffff;
   --text-normal-rgb: 255, 255, 255;
   --text-sub: #fafafa;
+  --text-sub-rgb: 250, 250, 250;
   --text-link: #20eefd;
 }
 
@@ -76,6 +78,7 @@ html.theme-dark {
     --text-normal: #ffffff;
     --text-normal-rgb: 255, 255, 255;
     --text-sub: #fafafa;
+    --text-sub-rgb: 250, 250, 250;
     --text-link: #20eefd;
   }
 }
@@ -147,7 +150,7 @@ h1 {
   font-size: 28px;
   font-weight: 700;
   border-bottom: 1px solid rgba(var(--text-normal-rgb), 0.5);
-  margin: 0 0 16px 0;
+  margin: 8px 0 16px 0;
   & > a {
     color: var(--text-normal);
     text-decoration: none;
@@ -198,11 +201,5 @@ ul {
 
 a {
   font-weight: bold;
-}
-
-code {
-  background-color: rgba(var(--bg-sub-rgb), 0.5);
-  padding: 4px;
-  border-radius: 4px;
 }
 </style>

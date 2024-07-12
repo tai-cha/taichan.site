@@ -24,9 +24,13 @@
 #### markdownの場合
 以下をコピペで挿入可能です
 
-`[![taichanのサイト](https://taichan.site/assets/banner.png)](https://taichan.site)`
+```md
+[![taichanのサイト](https://taichan.site/assets/banner.png)](https://taichan.site)
+```
 
 #### htmlの場合
 以下をコピペで挿入可能です
 
-`<a href="https://taichan.site"><img src="https://taichan.site/assets/banner.png" alt="taichanのサイト"></a>`
+```html
+<a href="https://taichan.site"><img src="https://taichan.site/assets/banner.png" alt="taichanのサイト"></a>
+```

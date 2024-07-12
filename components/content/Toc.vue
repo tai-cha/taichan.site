@@ -29,7 +29,7 @@ const route = useRoute();
 const links = ref<TocLink[] | undefined>();
 const title = ref<string | undefined>();
 
-const provided = inject('page');
+const provided = inject('page') as Ref<ParsedContent | undefined>;
 
 if (provided.value != null && provided.value._path == route.path) {
   title.value = provided.value.title;

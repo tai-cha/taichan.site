@@ -40,7 +40,7 @@ definePageMeta({
         <ContentRenderer :value="doc" />
         <hr :class="$style.endingHR">
         <div>
-          タグ: <span v-for="tag in doc.tags" :class="$style.tag">{{ tag }}</span>
+          タグ: <NuxtLink v-for="tag in doc.tags" :to="`/blog/tags/${tag}`" :class="$style.tag">{{ tag }}</NuxtLink>
         </div>
       </template>
       <template #not-found>
@@ -88,5 +88,6 @@ definePageMeta({
     padding: 4px 8px;
     margin: 4px;
     border-radius: 8px;
+    text-decoration: none;
   }
 </style>

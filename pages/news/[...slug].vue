@@ -17,7 +17,7 @@ useSeoMeta({
   ogTitle: page.value.title,
   description: page.value.description,
   ogType: 'article',
-  ogImage: `${runtimeConfig.baseUrl}${page.value.thumbnail}`,
+  ogImage: `${runtimeConfig.public.baseUrl}${page.value.thumbnail}`,
   articlePublishedTime: page.value.createdAt,
   articleModifiedTime: page.value.updatedAt,
   twitterCard: 'summary_large_image',

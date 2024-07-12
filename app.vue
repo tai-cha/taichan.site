@@ -7,8 +7,9 @@
 import { provide } from 'vue';
 import { useHtmlClass } from './composables/useHtmlClass';
 
+const runtimeConfig = useRuntimeConfig();
 const router = useRouter();
-const currentUrl = computed(() => `https://taichan.site${router.currentRoute.value.path}`);
+const currentUrl = computed(() => `${runtimeConfig.public.baseUrl}${router.currentRoute.value.path}`);
 
 type colorScheme = 'light' | 'dark';
 const colorScheme = ref<colorScheme>('light');

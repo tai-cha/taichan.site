@@ -9,7 +9,10 @@
 ## 相互リンクさん
 絶賛募集中
 
+::flex-container{gap="10px" :forBanners="true"}
 [![サンセットのウェブサイト](/img/banners/sunset0916-net.jpg)](https://sunset0916.net/)
+[![pelican@starlamp.su:~$](https://blog.starlamp.su/theme/img/banner.png)](https://blog.starlamp.su/)
+::
 
 ### リンクについて
 このサイトにリンクしてくださる方は、以下の画像と共にトップページにリンクしてくださると助かります。

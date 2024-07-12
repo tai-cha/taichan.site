@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="$style.container">
     <h1>ドキュメント一覧</h1>
     <ul>
       <li v-for="doc in docs">
@@ -15,3 +15,10 @@ useHead({
   title: 'ドキュメント一覧'
 })
 </script>
+<style module>
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+</style>

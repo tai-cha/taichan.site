@@ -14,7 +14,9 @@ const props = defineProps<{
     </NuxtLink>
 
     <div :class="$style.links">
+      <NuxtLink to="/docs">Docs</NuxtLink>
       <NuxtLink to="/blog">Blog</NuxtLink>
+      <NuxtLink to="/news">News</NuxtLink>
       <NuxtLink to="/links">Links</NuxtLink>
       <ThemeSwitcher />
     </div>
@@ -45,7 +47,7 @@ h1, h2, h3, h4, h5 {
 @mixin light-theme {
   --accent: #0095af;
   --bg: #a7ccd3;
-  --bg-rgb: 254, 218, 218;
+  --bg-rgb: 167, 204, 211;
   --bg-sub: #EEEEEE;
   --bg-sub-rgb: 238, 238, 238;
   --text-normal: #5f5f5f;
@@ -140,7 +142,7 @@ header a {
 .links {
   align-items: center;
   display: flex;
-  gap: 8px;
+  gap: 10px;
   margin-right: 8px;
 }
 
@@ -157,7 +159,7 @@ header a {
   border-radius: var(--border-radius);
   display: flex;
   margin: 12px 16px;
-  padding: 4px 16px 4px;
+  padding: 4px 16px 16px;
 }
 
 h1 {

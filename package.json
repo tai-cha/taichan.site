@@ -10,13 +10,15 @@
   "devDependencies": {
     "@iconify-json/ic": "^1.1.17",
     "@iconify-json/ph": "^1.1.13",
+    "@iconify-json/simple-icons": "^1.1.109",
     "@iconify-json/uil": "^1.1.8",
     "@nuxt/content": "^2.12.0",
     "@nuxt/icon": "^1.0.0",
     "@nuxt/image": "^1.7.0",
     "aiscript-vscode": "file:./aiscript-vscode/aiscript/syntaxes",
     "nuxt": "^3.10.3",
-    "nuxt-gtag": "^2.0.6"
+    "nuxt-gtag": "^2.0.6",
+    "sass": "^1.77.8"
   },
   "packageManager": "pnpm@8.15.1+sha1.8adba2d20330c02d3856e18c4eb3819d1d3ca6aa",
   "dependencies": {

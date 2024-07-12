@@ -2,14 +2,14 @@
   <div :class="$style.root">
     <h1>ブログ記事一覧</h1>
     <article v-for="page in blogs">
-      <NuxtLink :class="$style.pageLink" :to="page._path">
-        <div :class="$style.imgContainer"><NuxtImg :src="page.thumbnail" /></div>
+      <a :class="$style.pageLink" :href="page._path">
+        <div :class="$style.imgContainer"><NuxtImg v-if="page.thumbnail != null" :src="page.thumbnail" /></div>
         <div :class="$style.details">
           <div :class="$style.title">{{ page.title }}</div>
           <div :class="$style.description">{{ page.description }}</div>
           <div :class="$style.createdAt"><time :datetime="page.createdAt">{{ showDate(page.createdAt) }}</time></div>
         </div>
-      </NuxtLink>
+      </a>
     </article>
   </div>
 </template>
@@ -29,7 +29,7 @@ useHead({
 }
 
 .pageLink {
-  background-color: rgba(var(--text-normal-rgb), 0.15);
+  background-color: rgba(var(--bg-sub-rgb), 0.45);
   display: flex;
   margin: 20px 0;
   font-size: 20px;
@@ -54,7 +54,7 @@ useHead({
   flex-shrink: 0;
   width: 400px;
   height: 210px;
-  border-radius: 8px;
+  border-radius: 8px 0 0 8px;
   margin-right: 4px;
   line-height: 100%;
 

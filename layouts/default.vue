@@ -1,4 +1,9 @@
 <script lang="ts" setup>
+const props = defineProps<{
+  pageClass?: string,
+  pageStyle?: string | string[],
+  contentClass?: string,
+}>();
 </script>
 
 <template>
@@ -15,19 +20,29 @@
     </div>
 
   </header>
-  <div :class="$style.page">
-    <slot />
+  <div :class="[props.pageClass]" :style="props.pageStyle">
+    <slot name="before-page" />
+    <div class="container" :class="[$style.page, contentClass]">
+      <slot />
+    </div>
+    <slot name="after-page" />
   </div>
   <footer></footer>
 </template>
-<style>
+<style lang="scss">
 :root {
   color: var(--text-normal);
   font-family: 'Yu Gothic', 'YuGothic', '游ゴシック', '游ゴシック体', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
   --border-radius: 12px;
+  scroll-padding-top: 75px;
+  scroll-behavior: smooth;
 }
 
-html.theme-light {
+h1, h2, h3, h4, h5 {
+  scroll-margin-top: 75px;
+}
+
+@mixin light-theme {
   --accent: #0095af;
   --bg: #a7ccd3;
   --bg-rgb: 254, 218, 218;
@@ -38,9 +53,12 @@ html.theme-light {
   --text-sub: #fafafa;
   --text-sub-rgb: 250, 250, 250;
   --text-link: #1bacb6;
+
+  --warning: #c1c111;
+  --alert: #c11111;
 }
 
-html.theme-dark {
+@mixin dark-theme {
   --accent: #0095af;
   --bg: #688d94;
   --bg-rgb: 104, 141, 148;
@@ -51,35 +69,28 @@ html.theme-dark {
   --text-sub: #fafafa;
   --text-sub-rgb: 250, 250, 250;
   --text-link: #20eefd;
+
+  --warning: #eded17;
+  --alert: #ed1717;
+}
+
+html.theme-light {
+  @include light-theme;
+}
+
+html.theme-dark {
+  @include dark-theme;
 }
 
 @media (prefers-color-scheme: light) or (prefers-color-scheme: no-preference){
   html:not(.theme-light):not(.theme-dark) {
-    --accent: #0095af;
-    --bg: #a7ccd3;
-    --bg-rgb: 254, 218, 218;
-    --bg-sub: #EEEEEE;
-    --bg-sub-rgb: 238, 238, 238;
-    --text-normal: #5f5f5f;
-    --text-normal-rgb: 95, 95, 95;
-    --text-sub: #fafafa;
-    --text-sub-rgb: 250, 250, 250;
-    --text-link: #1bacb6;
+    @include light-theme;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   html:not(.theme-light):not(.theme-dark) {
-    --accent: #0095af;
-    --bg: #688d94;
-    --bg-rgb: 104, 141, 148;
-    --bg-sub: #808080;
-    --bg-sub-rgb: 63, 63, 63;
-    --text-normal: #ffffff;
-    --text-normal-rgb: 255, 255, 255;
-    --text-sub: #fafafa;
-    --text-sub-rgb: 250, 250, 250;
-    --text-link: #20eefd;
+    @include dark-theme;
   }
 }
 </style>
@@ -102,6 +113,8 @@ main {
 }
 
 header {
+  position: sticky;
+  top: 0;
   align-items: center;
   justify-content: space-between;
   background-color: var(--accent);
@@ -109,6 +122,7 @@ header {
   display: flex;
   padding: 12px 8px;
   font-weight: 500;
+  z-index: 100;
 }
 
 header a {

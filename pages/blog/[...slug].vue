@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { ParsedContent } from '@nuxt/content/types';
+
 const route = useRoute();
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
@@ -8,6 +10,8 @@ const runtimeConfig = useRuntimeConfig()
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'ページが見つかりません' })
 }
+
+(inject('page') as Ref<ParsedContent | undefined>).value = page.value
 
 useSeoMeta({
   ogTitle: page.value.title,
@@ -19,14 +23,19 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
   robots: page.value.noindex ? 'noindex' : undefined,
 })
+
+definePageMeta({
+  layout: 'article'
+});
+
 </script>
 <template>
   <main>
     <ContentDoc>
       <template v-slot="{ doc }">
-        <h1>{{ doc.title }}</h1>
-        <time :class="$style.createdAt" :datetime="doc.createdAt">{{ showDate(doc.createdAt) }}</time>
-        <time v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :class="$style.updatedAt" :datetime="doc.createdAt">{{ showDate(doc.updatedAt) }}</time>
+        <h1 id="title">{{ doc.title }}</h1>
+        <span :class="$style.createdAt">公開日: <time :datetime="doc.createdAt">{{ showDate(doc.createdAt) }}</time></span>
+        <span v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :class="$style.updatedAt">更新日: <time v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :datetime="doc.createdAt">{{ showDate(doc.updatedAt) }}</time></span>
         <ContentRenderer :value="doc" />
       </template>
       <template #not-found>
@@ -49,9 +58,6 @@ useSeoMeta({
   }
 
   .createdAt {
-    &::before {
-      content: '公開日: ';
-    }
     display: inline-block;
     width: 100%;
     text-align: right;
@@ -60,9 +66,6 @@ useSeoMeta({
   }
 
   .updatedAt {
-    &::before {
-      content: '更新日: ';
-    }
     display: inline-block;
     width: 100%;
     text-align: right;

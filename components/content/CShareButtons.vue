@@ -1,6 +1,6 @@
 // Just a wrapper component for ~/components/ShareButtons.vue will be used in markdown components.
 <template>
-  <ShareButtons v-vind="props" />
+  <ShareButtons v-bind="props" />
 </template>
 <script lang="ts" setup>
 const props = withDefaults(defineProps<{

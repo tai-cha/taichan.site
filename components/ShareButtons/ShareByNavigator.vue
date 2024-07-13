@@ -25,7 +25,7 @@ const onClick = () => {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--text-link);
+  background: rgba(var(--text-link-rgb), 0.5);
   width: 48px;
   height: 48px;
   font-size: 22px;

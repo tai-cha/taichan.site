@@ -112,6 +112,7 @@ html, body {
 }
 
 main {
+  box-sizing: border-box;
   width: 100%;
   padding: 20px;
 }
@@ -157,6 +158,7 @@ header a {
 }
 
 .page {
+  box-sizing: border-box;;
   background-color: rgba(var(--bg-sub-rgb), 0.55);
   border-radius: var(--border-radius);
   display: flex;

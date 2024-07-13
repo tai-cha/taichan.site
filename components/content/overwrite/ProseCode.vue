@@ -6,7 +6,10 @@
     </span>
     <span :class="$style.copyButton" @mouseenter="onCopyMouseAction" @mouseleave="onCopyMouseAction" @click="onCopyClicked"><Icon name="uil:clipboard-alt"></Icon></span>
     <span v-show="isTooltipVisible" :class="$style.copyTooltip" ref="copy-tooltip">{{ copyTooltipText }}</span>
-    <slot />
+    <div :class="$style.codes">
+      <slot />
+    </div>
+
   </div>
 </template>
 
@@ -113,36 +116,14 @@ html:global(.theme-dark) .container {
 }
 
 .container {
+  box-sizing: border-box;
   background-color: var(--shiki-default-bg);
   position: relative;
-  overflow-x: auto;
   margin-top: 1rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
   padding: 1.5rem 4px 0 4px;
-
-  counter-reset: line-num;
-
-  & > pre {
-    font-family: "M PLUS 1 Code", monospace;
-  }
-
-  & > pre > code > span {
-    counter-increment: line-num;
-  }
-
-  & > pre > code > span::before {
-    content: counter(line-num);
-    display: inline-block;
-    width: 1rem;
-    text-align: right;
-    margin-right: 1rem;
-  }
-
-  span:global(.highlight) {
-    background-color: v-bind(defaultThemeSelectionBg);
-    --shiki-default-bg: v-bind(defaultThemeSelectionBg);
-  }
+  width: 100%;
 }
 
 html:global(.theme-light) .codeInfo {
@@ -182,5 +163,34 @@ html:global(.theme-dark) .codeInfo {
   right: 28px;
   border-radius: 0.5rem;
   padding: 2px 4px;
+}
+
+.codes {
+  box-sizing: border-box;;
+  overflow-x: auto;
+  counter-reset: line-num;
+
+  width: 100%;
+
+  span:global(.highlight) {
+    background-color: v-bind(defaultThemeSelectionBg);
+    --shiki-default-bg: v-bind(defaultThemeSelectionBg);
+  }
+
+  & > pre {
+    font-family: "M PLUS 1 Code", monospace;
+  }
+
+  & > pre > code > span {
+    counter-increment: line-num;
+  }
+
+  & > pre > code > span::before {
+    content: counter(line-num);
+    display: inline-block;
+    width: 1rem;
+    text-align: right;
+    margin-right: 1rem;
+  }
 }
 </style>

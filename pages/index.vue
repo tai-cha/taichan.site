@@ -24,6 +24,8 @@ useSeoMeta({
       <span><Icon :class="$style.icon" name="uil:twitter" color="#1DA1F2" /><a href="https://twitter.com/taichan_v2">Twitter (@taichan_v2)</a></span>
 
       <span :class="$style.guideForNadesskey">もしかして: お探しのサイトは<a href="mi.taichan.site"><Icon :class="$style.icon" name="tai:nadesskey" />なですきー</a></span>
+
+      <ShareButtons />
     </div>
   </main>
 </template>

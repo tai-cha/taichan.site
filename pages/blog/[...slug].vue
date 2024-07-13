@@ -38,10 +38,11 @@ definePageMeta({
         <span :class="$style.createdAt">公開日: <time :datetime="doc.createdAt">{{ showDate(doc.createdAt) }}</time></span>
         <span v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :class="$style.updatedAt">更新日: <time v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :datetime="doc.createdAt">{{ showDate(doc.updatedAt) }}</time></span>
         <ContentRenderer :value="doc" />
-        <hr :class="$style.endingHR">
-        <div>
+        <div :class="$style.tags">
           タグ: <NuxtLink v-for="tag in doc.tags" :to="`/blog/tags/${tag}`" :class="$style.tag">{{ tag }}</NuxtLink>
         </div>
+        <hr :class="$style.endingHR">
+        <ShareButtons />
       </template>
       <template #not-found>
         <h1>404 Not Found</h1>
@@ -80,6 +81,11 @@ definePageMeta({
 
   .endingHR {
     margin: 24px 0;
+  }
+
+  .tags {
+    width: 100%;
+    text-align: right;
   }
 
   .tag {

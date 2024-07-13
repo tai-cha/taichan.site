@@ -1,4 +1,6 @@
 import type { BundledTheme } from "shiki";
+import generateSitemap from "./scripts/generate-sitemap";
+
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -72,10 +74,15 @@ export default defineNuxtConfig({
         '/',
         '/about',
         '/blog',
+        '/blog/tags',
         '/news',
         '/docs',
-        '/links'
+        '/links',
+        '/404.html',
       ]
+    },
+    hooks: {
+      compiled: generateSitemap
     }
   },
 

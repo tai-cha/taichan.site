@@ -5,6 +5,7 @@
   </main>
 </template>
 <script lang="ts" setup>
+import type { ListContent } from '~/components/BlogList.vue';
 const { data: blogs } = await useAsyncData('blogs', () => queryContent('blog').only(['_path', 'title', 'description', 'tags', 'thumbnail', 'createdAt', 'updatedAt', 'draft']).where({ draft: false }).find())
 
 useHead({

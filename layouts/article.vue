@@ -10,7 +10,7 @@
   </DefaultLayout>
 </template>
 <script lang="ts" setup>
-import type { ParsedContent } from '@nuxt/content/types';
+import type { ParsedContent } from '@nuxt/content';
 provide('page', ref<ParsedContent | undefined>(undefined));
 import DefaultLayout from './default.vue';
 

@@ -10,16 +10,15 @@
       </div>
     </a>
   </article>
-  <div v-if="props.pages && props.pages.length === 0">記事はありません</div>
+  <div v-if="props.pages == null || props.pages.length === 0">記事はありません</div>
 </template>
 <script lang="ts" setup>
-import type { ParsedContent } from '@nuxt/content/types';
+import type { ParsedContent } from '@nuxt/content';
+export type ListContent = Pick<ParsedContent, "tags" | "title" | "description" | "_path" | "thumbnail" | "createdAt" | "updatedAt" | "draft">;
 
-const props = withDefaults(defineProps<{
-  pages: ParsedContent[]
-}>(), {
-  pages: []
-})
+const props = defineProps<{
+  pages?: ListContent[] | null
+}>()
 
 const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 </script>

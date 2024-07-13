@@ -4,8 +4,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue';
-
 const $style = useCssModule();
 
 const props = withDefaults(defineProps<{

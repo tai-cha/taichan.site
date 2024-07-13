@@ -55,6 +55,7 @@ h1, h2, h3, h4, h5 {
   --text-sub: #fafafa;
   --text-sub-rgb: 250, 250, 250;
   --text-link: #1bacb6;
+  --text-link-rgb: 27, 172, 182;
 
   --warning: #c1c111;
   --alert: #c11111;
@@ -71,6 +72,7 @@ h1, h2, h3, h4, h5 {
   --text-sub: #fafafa;
   --text-sub-rgb: 250, 250, 250;
   --text-link: #20eefd;
+  --text-link-rgb: 27, 172, 182;
 
   --warning: #eded17;
   --alert: #ed1717;

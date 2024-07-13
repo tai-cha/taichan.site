@@ -18,7 +18,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type { ParsedContent, TocLink } from '@nuxt/content/types';
+import type { ParsedContent, TocLink } from '@nuxt/content';
 
 const {
   activeHeadings,

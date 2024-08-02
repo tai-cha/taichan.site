@@ -177,7 +177,7 @@ export default async function generateSitemap(nitro: Nitro) {
 ### lastmodに対応させたい…
 サイトマップで最も大事なのはlastmodの値といっても過言ではありません。
 
-SSG時にその値をどうやって取得しようかな…と悩んだのですが、今回は`node-html-parser`を用いてmetaタグから`<meta property="article:published_time">`または`article:modified_time">`を取得することで解決しています。ブログページ以外には適用しないことで実行時間をなるべく抑えています。
+SSG時にその値をどうやって取得しようかな…と悩んだのですが、今回は`node-html-parser`を用いてmetaタグから`<meta property="article:published_time">`または`<meta property="article:modified_time">`を取得することで解決しています。ブログページ以外には適用しないことで実行時間をなるべく抑えています。
 
 ### ログをポップに表示する
 Nuxtのログ、絵文字が使われていてポップで使いやすいな…と思っていたのですがどうやら[consola](https://github.com/unjs/consola)というライブラリを使うことで可能なよう。（ちなみにNuxtを利用している場合はわざわざ導入しなくても入っています）

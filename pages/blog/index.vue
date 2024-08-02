@@ -5,11 +5,12 @@
   </main>
 </template>
 <script lang="ts" setup>
-import type { ListContent } from '~/components/BlogList.vue';
-const { data: blogs } = await useAsyncData('blogs', () => queryContent('blog').only(['_path', 'title', 'description', 'tags', 'thumbnail', 'createdAt', 'updatedAt', 'draft']).where({ draft: false }).find())
+const { data: blogs } = await useAsyncData('blogs', () => queryContent('blog').only(['_path', 'title', 'description', 'tags', 'thumbnail', 'createdAt', 'updatedAt', 'draft']).where({ draft: false }).sort({ createdAt: -1 }).find())
 
-useHead({
-  title: 'ブログ一覧'
+useSeoMeta({
+  title: 'ブログ一覧',
+  ogTitle: 'ブログ一覧',
+  description: 'ブログ記事の一覧です。',
 })
 </script>
 <style module>

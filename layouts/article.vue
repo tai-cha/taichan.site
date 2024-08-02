@@ -19,11 +19,11 @@ import DefaultLayout from './default.vue';
 .page {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .pageContent {
-  /* こまる */
-  box-shadow: none;
+  flex-grow: 1;
 }
 
 .content {
@@ -37,6 +37,9 @@ import DefaultLayout from './default.vue';
   padding: 4px 16px 4px;
 
   align-self: flex-start;
+
+  flex-basis: max(250px, 20%);
+  flex-shrink: 0;
 }
 
 @media screen and (max-width: 960px) {

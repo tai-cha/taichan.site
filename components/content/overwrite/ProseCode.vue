@@ -90,8 +90,10 @@ const onCopyClicked = async () => {
 }
 </script>
 <style module>
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@100..700&display=swap');
-
+@font-face {
+  font-family: "Source Han Code JP";
+  src: url("https://github.com/adobe-fonts/source-han-code-jp/releases/download/2.012R/SourceHanCodeJP.ttc") format("truetype");
+}
 .container {
   --shiki-default-bg: v-bind(defaultThemeBg);
   --shiki-theme-light-bg: v-bind(lightThemeBg);
@@ -167,7 +169,6 @@ html:global(.theme-dark) .codeInfo {
 
 .codes {
   box-sizing: border-box;;
-  overflow-x: auto;
   counter-reset: line-num;
 
   width: 100%;
@@ -178,7 +179,18 @@ html:global(.theme-dark) .codeInfo {
   }
 
   & > pre {
-    font-family: "M PLUS 1 Code", monospace;
+    position: relative;
+    overflow-x: auto;
+    width: 100%;
+    white-space: pre-wrap;
+  }
+
+  & > pre > code {
+    font-family: "Source Han Code JP", SFMono-Regular,Consolas,Liberation Mono,Menlo, Courier, Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji, monospace;
+    font-size: 14px;
+    overflow-x: auto;
+    width: 100%;
+    display: inline-block;
   }
 
   & > pre > code > span {
@@ -186,9 +198,11 @@ html:global(.theme-dark) .codeInfo {
   }
 
   & > pre > code > span::before {
+    font-family: monospace;
     content: counter(line-num);
     display: inline-block;
     width: 1rem;
+    height: 100%;
     text-align: right;
     margin-right: 1rem;
   }

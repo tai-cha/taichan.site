@@ -29,7 +29,11 @@ const props = defineProps<{
     </div>
     <slot name="after-page" />
   </div>
-  <footer></footer>
+  <footer>
+    <div :class="$style.links">
+      <NuxtLink to="/privacy_policy">プライバシーポリシー</NuxtLink>
+    </div>
+  </footer>
 </template>
 <style lang="scss">
 :root {
@@ -46,6 +50,7 @@ h1, h2, h3, h4, h5 {
 
 @mixin light-theme {
   --accent: #0095af;
+  --accent-rgb: 0, 149, 175;
   --bg: #a7ccd3;
   --bg-rgb: 167, 204, 211;
   --bg-sub: #EEEEEE;
@@ -63,6 +68,7 @@ h1, h2, h3, h4, h5 {
 
 @mixin dark-theme {
   --accent: #0095af;
+  --accent-rgb: 0, 149, 175;
   --bg: #688d94;
   --bg-rgb: 104, 141, 148;
   --bg-sub: #808080;
@@ -99,6 +105,13 @@ html.theme-dark {
 }
 </style>
 <style module>
+div:global(#__nuxt) {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100vh;
+}
+
 a {
   color: var(--text-link);
 }
@@ -220,6 +233,30 @@ ul {
 
 a {
   font-weight: bold;
+}
+
+footer {
+  align-items: center;
+  justify-content: flex-end;
+  background-color: rgba(var(--accent-rgb), 0.3);
+  color: var(--text-sub);
+  display: flex;
+  padding: 12px 8px;
+  font-weight: 500;
+  z-index: 100;
+  margin: 24px 0 0;
+}
+
+footer a {
+  color: var(--text-sub);
+  text-decoration: none;
+}
+
+.footer_link {
+  display: flex;
+  align-items: center;
+  font-size: 19px;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 960px) {

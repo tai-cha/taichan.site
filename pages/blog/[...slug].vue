@@ -55,7 +55,7 @@ useJsonld({
           タグ: <NuxtLink v-for="tag in doc.tags" :to="`/blog/tags/${tag}`" :class="$style.tag">{{ tag }}</NuxtLink>
         </div>
         <hr :class="$style.endingHR">
-        <ShareButtons :title="`${doc.title} | taichanのサイト`" />
+        <ShareButtons :text="`${doc.title} | taichanのサイト`" />
       </template>
       <template #not-found>
         <h1>404 Not Found</h1>

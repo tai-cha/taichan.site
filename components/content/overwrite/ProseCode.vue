@@ -90,10 +90,6 @@ const onCopyClicked = async () => {
 }
 </script>
 <style module>
-@font-face {
-  font-family: "Source Han Code JP";
-  src: url("https://github.com/adobe-fonts/source-han-code-jp/releases/download/2.012R/SourceHanCodeJP.ttc") format("truetype");
-}
 .container {
   --shiki-default-bg: v-bind(defaultThemeBg);
   --shiki-theme-light-bg: v-bind(lightThemeBg);
@@ -192,7 +188,7 @@ html:global(.theme-dark) .codeInfo {
   & > pre > code {
     scrollbar-width: thin;
     scrollbar-gutter: thin;
-    font-family: "Source Han Code JP", SFMono-Regular,Consolas,Liberation Mono,Menlo, Courier, Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji, monospace;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo, Courier, Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji, monospace;
     font-size: 14px;
     overflow-x: auto;
     width: 100%;

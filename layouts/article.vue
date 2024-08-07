@@ -2,7 +2,7 @@
   <DefaultLayout :pageClass="$style.page" :content-class="$style.pageContent">
     <slot />
     <template #after-page>
-      <aside :class="$style.content">
+      <aside :class="$style.aside">
         <!-- <div style="width: 300px;height: 200px;">300px * 200px</div> -->
         <Toc></Toc>
       </aside>
@@ -26,7 +26,7 @@ import DefaultLayout from './default.vue';
   flex-grow: 1;
 }
 
-.content {
+.aside {
   position: sticky;
   top: 75px;
   background-color: rgba(var(--bg-sub-rgb), 0.55);
@@ -38,12 +38,13 @@ import DefaultLayout from './default.vue';
 
   align-self: flex-start;
 
-  flex-basis: max(250px, 20%);
+  flex-basis: 20%;
   flex-shrink: 0;
 }
 
+/* 十分なサイズでない画面では表示を変えたいので960 */
 @media screen and (max-width: 960px) {
-  .content {
+  .aside {
     display: none;
   }
 }

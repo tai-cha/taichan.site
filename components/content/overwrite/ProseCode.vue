@@ -172,7 +172,7 @@ html:global(.theme-dark) .codeInfo {
   counter-reset: line-num;
 
   width: 100%;
-  max-width: calc(100vw - 80px);
+  max-width: calc(60vw - 80px);
 
   span:global(.highlight) {
     background-color: v-bind(defaultThemeSelectionBg);
@@ -207,6 +207,12 @@ html:global(.theme-dark) .codeInfo {
     height: 100%;
     text-align: right;
     margin-right: 1rem;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .codes {
+    max-width: calc(100vw - 80px);
   }
 }
 </style>

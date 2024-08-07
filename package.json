@@ -19,6 +19,7 @@
     "node-html-parser": "^6.1.13",
     "nuxt": "^3.12.3",
     "nuxt-gtag": "^2.0.6",
+    "nuxt-jsonld": "^2.0.8",
     "sass": "^1.77.8",
     "sitemap": "^8.0.0"
   },

@@ -29,6 +29,19 @@ definePageMeta({
   layout: 'article'
 });
 
+useJsonld({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: page.value.title,
+  description: page.value.description,
+  datePublished: page.value.createdAt,
+  dateModified: page.value.updatedAt,
+  author: [{
+    '@type': 'Person',
+    name: 'taichan'
+  }],
+})
+
 </script>
 <template>
   <main>

@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     '@nuxthq/studio',
     "@nuxt/image",
     "@nuxt/icon",
-    "nuxt-gtag"
+    "nuxt-gtag",
+    "nuxt-jsonld"
   ],
 
   icon: {

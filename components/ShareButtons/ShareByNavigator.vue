@@ -30,5 +30,6 @@ const onClick = () => {
   height: 48px;
   font-size: 22px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 </style>

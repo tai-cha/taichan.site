@@ -221,4 +221,26 @@ ul {
 a {
   font-weight: bold;
 }
+
+@media screen and (max-width: 960px) {
+  main {
+    padding: 12px;
+  }
+  .page {
+    margin: 12px 8px;
+    padding: 4px 4px;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  h4 {
+    font-size: 14px;
+  }
+}
 </style>

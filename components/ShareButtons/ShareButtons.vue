@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.container">
-    <span :class="$style.label">シェアする？</span>
-    <div :class="$style.buttons">
+    <span :class="labelClasses">シェアする？</span>
+    <div :class="containerClasses">
       <ShareToX v-bind="shareInfo" />
       <ShareToLine v-bind="shareInfo" />
       <ShareToMastodon v-bind="shareInfo" />
@@ -26,9 +26,15 @@ const props = withDefaults(defineProps<{
   title?: string;
   text?: string;
   enableClipboard?: boolean;
+  withBorder?: boolean;
+  withLabel?: boolean;
 }>(),{
-  enableClipboard: false
+  enableClipboard: false,
+  withLabel: true,
+  withBorder: true,
 });
+
+const $style = useCssModule()
 
 const runtimeConfig = useRuntimeConfig();
 const route = useRoute();
@@ -40,13 +46,23 @@ const shareInfo = {
   url: props.url ?? currentUrl,
 }
 
+const containerClasses = computed(() => ({
+  [$style.buttons] : true,
+  [$style.border]: props.withBorder,
+}));
+
+const labelClasses = computed(() => ({
+  [$style.label]: true,
+  [$style['display-none']] : !props.withLabel,
+}));
+
 </script>
 <style module>
 .container {
   box-sizing: border-box;
   width: 100%;
   margin: 20px 0 12px;
-  padding: 16px;
+  padding: 16px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,13 +77,29 @@ const shareInfo = {
   text-align: center;
 }
 
+.display-none {
+  display: none;
+}
+
 .buttons {
-  border: 2px solid var(--accent);
-  box-sizing: padding-box;
-  display: flex;
-  gap: min(8px, 5%);
-  justify-content: center;
-  width: max(30%, 350px);
+  box-sizing: border-box;
+  display: grid;
+  gap: 8px;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
   padding: 8px;
+
+  &.border {
+    border: 2px solid var(--accent);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 16px 0;
+  }
+  .buttons {
+    padding: 4px;
+  }
 }
 </style>

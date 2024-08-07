@@ -172,6 +172,7 @@ html:global(.theme-dark) .codeInfo {
   counter-reset: line-num;
 
   width: 100%;
+  max-width: calc(100vw - 80px);
 
   span:global(.highlight) {
     background-color: v-bind(defaultThemeSelectionBg);
@@ -182,7 +183,8 @@ html:global(.theme-dark) .codeInfo {
     position: relative;
     overflow-x: auto;
     width: 100%;
-    white-space: pre-wrap;
+    white-space: pre;
+    /* TODO: 折り返しの切り替えに対応 */
   }
 
   & > pre > code {

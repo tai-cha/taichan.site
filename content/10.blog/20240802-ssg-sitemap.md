@@ -12,9 +12,10 @@ draft: false
 ---
 
 この記事は以下の記事をベースにしています。
+
 [【Nuxt3】SSGモードでxmlサイトマップを作成する方法【動的ページ対応】](https://zenn.dev/kakkokari_gtyih/articles/db1aed4fed6054)
 
-上記の記事に従えばNuxtのSSGでサイトマップを公開することは可能なのですが、Nuxt Contentを利用してサイトを作るときにこのような問題が生まれます
+上記の記事に従えばNuxtのSSGでサイトマップを公開することは可能なのですが、Nuxt Contentを利用してサイトを作るときに問題があります。
 - サイトマップに一番肝心なlastmodが適用されない…！
 
 

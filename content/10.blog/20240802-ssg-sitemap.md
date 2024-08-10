@@ -1,6 +1,6 @@
 ---
 title: 【Nuxt3】SSGでサイトマップを生成する【lastmod対応】
-description: ブログやこのサイトを作った経緯をお伝えします。どんな技術スタックを使っているかやこだわったポイントなども書きました。
+description: Nuxt3とContentプラグインを使っている環境でlastmodを含めたサイトマップをSSGで生成する方法を解説しています。
 category: blog
 tags: [雑記, 技術, Nuxt, SSG, SEO]
 createdAt: 2024-08-02

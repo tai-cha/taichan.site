@@ -1,6 +1,6 @@
 ---
 title: 【DiscordSRV】MinecraftでDiscordとのリンク強制は単体でできる
-description: 2024/08/14現在でもMinecraft（Java版）でサーバーを建てた際にDiscord連携を必須にしようとするとプラグインを複数使用する記事が出てきますが、単体で十分です。設定方法を解説します。
+description: 2024年現在でもMinecraft（Java版）のSpigotやPaperでサーバーを建てた際にDiscord連携を必須にしようとするとプラグインを複数使用する記事が出てきますが、単体で十分です。設定方法を解説します。
 category: blog
 tags: [Minecraft, Spigotプラグイン, DiscordSRV]
 createdAt: 2024-08-14

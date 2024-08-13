@@ -4,12 +4,14 @@
     <ul v-if="links">
       <li>
         <a v-if="title" href="#title" :class="anchorClass('title')">{{ title }}</a>
-      </li>
-      <li v-for="item in links">
-        <a :href="`#${item.id}`" :class="anchorClass(item.id)">{{ item.text }}</a>
-        <ul v-if="item.children">
-          <li v-for="child in item.children">
-            <a :href="`#${child.id}`" :class="anchorClass(item.id)">{{ child.text }}</a>
+        <ul>
+          <li v-for="item in links">
+            <a :href="`#${item.id}`" :class="anchorClass(item.id)">{{ item.text }}</a>
+            <ul v-if="item.children">
+              <li v-for="child in item.children">
+                <a :href="`#${child.id}`" :class="anchorClass(item.id)">{{ child.text }}</a>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>

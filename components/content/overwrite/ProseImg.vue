@@ -6,6 +6,7 @@
     :width="width"
     :height="height"
     :class="$style.proseImg"
+    format="webp"
   />
 </template>
 

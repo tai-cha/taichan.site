@@ -16,7 +16,7 @@ useSeoMeta({
 <template>
   <main>
     <div :class="$style.container">
-      <NuxtImg :class="$style.profile" class="profile" src="/img/tai-cha_icon.png" alt="tai-cha" />
+      <NuxtImg :class="$style.profile" class="profile" src="/img/tai-cha_icon.png" alt="tai-cha" format="webp" />
       <span :class="$style.name">taichan</span>
       <TypeWriter :texts="descriptions" />
       <NuxtLink to="/about" :class="$style.readMore">Read more about me</NuxtLink>

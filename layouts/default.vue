@@ -9,7 +9,7 @@ const props = defineProps<{
 <template>
   <header>
     <NuxtLink to="/" :class="$style.header_link">
-      <NuxtImg :class="$style.logo" width="40px" height="40px" src="/img/tai-cha_icon.png" alt="" />
+      <NuxtImg :class="$style.logo" width="40px" height="40px" src="/img/tai-cha_icon.png" alt="" format="webp" />
       taichanのサイト
     </NuxtLink>
 

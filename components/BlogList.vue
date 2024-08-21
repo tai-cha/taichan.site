@@ -1,7 +1,7 @@
 <template>
   <article v-for="page in props.pages">
     <a :class="$style.pageLink" :href="page._path">
-      <div :class="$style.imgContainer"><NuxtImg v-if="page.thumbnail != null" :src="page.thumbnail" /></div>
+      <div :class="$style.imgContainer"><NuxtImg v-if="page.thumbnail != null" :src="page.thumbnail" format="webp" /></div>
       <div :class="$style.details">
         <div :class="$style.title">{{ page.title }}</div>
         <div :class="$style.description">{{ page.description }}</div>

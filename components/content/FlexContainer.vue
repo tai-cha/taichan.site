@@ -45,7 +45,7 @@ const classes = computed(() => [
 
 .container.forBanners {
   & img {
-    min-height: 60px;
+    height: 60px;
   }
 }
 

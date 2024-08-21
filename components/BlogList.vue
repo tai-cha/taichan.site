@@ -42,6 +42,7 @@ const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLoca
     justify-content: center;
     align-items: center;
   }
+  align-self: center;
   position: relative;
   background-color: rgba(var(--text-normal-rgb), 0.5);
   /* 1200 * 630 -> 400 * 210 (1/3 x) */
@@ -93,6 +94,7 @@ const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLoca
   margin: 4px;
   border-radius: 8px;
   text-decoration: none;
+  line-height: 2.5;
 }
 
 .tags {

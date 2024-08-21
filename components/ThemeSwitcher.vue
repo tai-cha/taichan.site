@@ -14,11 +14,12 @@ const toggleTheme = () => {
   }
 };
 
-const buttonIconName = computed(() => colorScheme.value === 'light' ? 'ph:moon-fill' : 'ph-sun-fill');
+const isLight = computed(() => colorScheme.value === 'light');
 </script>
 <template>
   <div>
-    <button :class="$style.toggleSwitch" @click="toggleTheme"><Icon :name="buttonIconName" /></button>
+    <button v-show="isLight" :class="$style.toggleSwitch" @click="toggleTheme"><Icon name="ph-moon-fill" /></button>
+    <button v-show="!isLight" :class="$style.toggleSwitch" @click="toggleTheme"><Icon name="ph-sun-fill" /></button>
   </div>
 </template>
 <style module>

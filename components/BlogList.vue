@@ -95,6 +95,7 @@ const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLoca
   border-radius: 8px;
   text-decoration: none;
   line-height: 2.5;
+  text-wrap: nowrap;
 }
 
 .tags {

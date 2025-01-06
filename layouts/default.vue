@@ -10,7 +10,7 @@ const props = defineProps<{
   <header>
     <NuxtLink to="/" :class="$style.header_link">
       <NuxtImg :class="$style.logo" width="40px" height="40px" src="/img/tai-cha_icon.png" alt="" format="webp" />
-      taichanのサイト
+      <span :class="$style.siteName">taichanのサイト</span>
     </NuxtLink>
 
     <div :class="$style.links">
@@ -278,6 +278,10 @@ footer a {
   }
   h4 {
     font-size: 14px;
+  }
+
+  .siteName {
+    display: none;
   }
 }
 </style>

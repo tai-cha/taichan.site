@@ -1,11 +1,11 @@
 <template>
-  <div :class="$style.container">
+  <main :class="$style.container">
     <h1>ニュース一覧</h1>
     <div v-for="page in news">
       <NuxtLink :to="page._path">{{ page.title }} {{ page.createdAt }}</NuxtLink>
     </div>
     <div v-if="news != null || news!.length > 0">ニュースはありません</div>
-  </div>
+  </main>
 </template>
 <script lang="ts" setup>
 const { data: news } = await useAsyncData('news', () => queryContent('news').only(['_path', 'title', 'createdAt', 'updatedAt', 'draft']).where({ draft: false }).find())

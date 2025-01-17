@@ -8,7 +8,9 @@ const props = withDefaults(defineProps<{
   title?: string;
   text?: string;
   enableClipboard?: boolean;
+  enableNavigator?: boolean;
 }>(),{
-  enableClipboard: false
+  enableClipboard: true,
+  enableNavigator: false,
 });
 </script>

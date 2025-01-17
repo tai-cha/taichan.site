@@ -7,7 +7,7 @@
       <ShareToMastodon v-bind="shareInfo" />
       <ShareToMisskey v-bind="shareInfo" />
       <ShareToClipBoard v-if="enableClipboard" v-bind="shareInfo" />
-      <ShareByNavigator v-bind="shareInfo" />
+      <ShareByNavigator v-if="enableNavigator" v-bind="shareInfo" />
     </div>
   </div>
 </template>
@@ -26,10 +26,12 @@ const props = withDefaults(defineProps<{
   title?: string;
   text?: string;
   enableClipboard?: boolean;
+  enableNavigator?: boolean;
   withBorder?: boolean;
   withLabel?: boolean;
 }>(),{
-  enableClipboard: false,
+  enableClipboard: true,
+  enableNavigator: false,
   withLabel: true,
   withBorder: true,
 });

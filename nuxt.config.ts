@@ -1,26 +1,16 @@
 import generateSitemap from "./scripts/generate-sitemap";
-import type { ThemeRegistrationRaw } from "shiki";
 
-const themeConfig = {
+const themeConfig: Record<string, BundledTheme> = {
   default: 'one-light',
   'theme-light': 'one-light',
   'theme-dark': 'solarized-dark',
-} satisfies { [theme: string]: string | ThemeRegistrationRaw; default: string | ThemeRegistrationRaw; }
+}
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  modules: ['@nuxt/content', "@nuxt/image", "@nuxt/icon", "nuxt-gtag", "nuxt-jsonld", 'nuxt-studio', 'nuxt-og-image'],
-
-  site: {
-    url: 'https://taichan.site',
-  },
-
-  ogImage: {
-    enabled: true,
-    defaults: { component: 'Default' }
-  },
+  modules: ['@nuxt/content', "@nuxt/image", "@nuxt/icon", "nuxt-gtag", "nuxt-jsonld", 'nuxt-studio'],
 
   icon: {
     customCollections: [
@@ -52,7 +42,7 @@ export default defineNuxtConfig({
       markdown: {
         highlight: {
           theme: themeConfig,
-          langs: ['js', 'ts', 'jsx', 'tsx', 'json', 'json5', 'vue', 'css', 'html', 'vue', 'shell', 'bash', 'zsh', 'ruby', 'yml', 'docker', 'bat', 'csharp', 'sql', 'diff', 'erb', 'md', 'ps', 'sass',]
+          langs: ['js','ts','jsx','tsx','json','json5','vue','css','html','vue','shell','bash','zsh','ruby','yml','docker','bat','csharp','sql','diff','erb','md','ps','sass',]
         }
       }
     }
@@ -92,29 +82,14 @@ export default defineNuxtConfig({
     '/links': { prerender: true },
     '/privacy-policy': { prerender: true },
     '/404.html': { prerender: true },
-    '/**/__og_image__/**': { isr: 31536000 }, // 1 year cache. Basically static once generated.
   },
 
   nitro: {
-    preset: 'cloudflare-pages',
-    cloudflare: {
-      pages: {
-        routes: {
-          exclude: ['/docs/*', '/blog/*', '/news/*', '/links', '/about', '/privacy-policy', '/404.html', '/']
-        }
-      },
-      wrangler: {
-        compatibility_date: '2025-01-20',
-        compatibility_flags: ['nodejs_compat']
-      }
-    },
-
     esbuild: {
       options: {
         target: 'es2022'
       }
     },
-
     prerender: {
       crawlLinks: true,
       routes: [

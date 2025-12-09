@@ -97,11 +97,24 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: 'cloudflare-pages',
+    cloudflare: {
+      pages: {
+        routes: {
+          exclude: ['/docs/*', '/blog/*', '/news/*', '/links', '/about', '/privacy-policy', '/404.html', '/']
+        }
+      },
+      wrangler: {
+        compatibility_date: '2025-01-20',
+        compatibility_flags: ['nodejs_compat']
+      }
+    },
+
     esbuild: {
       options: {
         target: 'es2022'
       }
     },
+
     prerender: {
       crawlLinks: true,
       routes: [

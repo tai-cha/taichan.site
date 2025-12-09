@@ -15,17 +15,27 @@ const post = page.value
 
 ;(inject('page') as Ref<BlogCollectionItem | undefined>).value = post
 
+const { getThumbnail } = useArticleThumbnail()
+const thumbnail = getThumbnail(post.path, post.thumbnail)
+
 useSeoMeta({
   ogTitle: post.title,
   description: post.description,
   ogType: 'article',
-  ogImage: `${runtimeConfig.public.baseUrl}${post.thumbnail}`,
+  ogImage: `${runtimeConfig.public.baseUrl}${thumbnail}`,
   articlePublishedTime: post.createdAt,
   articleModifiedTime: post.updatedAt,
-  twitterImage: `${runtimeConfig.public.baseUrl}${post.thumbnail}`,
+  twitterImage: `${runtimeConfig.public.baseUrl}${thumbnail}`,
   twitterCard: 'summary_large_image',
   robots: post.noindex ? 'noindex' : undefined,
 })
+
+if (!post.thumbnail || post.thumbnail === '/default-ogp.png') {
+  defineOgImageComponent('Default', {
+    title: post.title,
+    category: post.category || 'BLOG',
+  })
+}
 
 definePageMeta({
   layout: 'article'

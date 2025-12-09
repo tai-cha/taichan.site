@@ -1,14 +1,14 @@
 <template>
   <article v-for="page in props.pages">
-    <a :class="$style.pageLink" :href="page.path">
-      <div :class="$style.imgContainer"><NuxtImg v-if="page.thumbnail != null" :src="page.thumbnail" format="webp" /></div>
+    <div :class="$style.pageLink" @click="router.push(page.path)" role="link">
+      <div :class="[$style.imgContainer, { [$style.loaded]: loadedImages.has(page.path) }]"><img :src="getThumbnail(page.path, page.thumbnail)" :alt="page.title" @error="onImageError" @load="onImageLoad(page.path)" /></div>
       <div :class="$style.details">
         <div :class="$style.title">{{ page.title }}</div>
         <div :class="$style.description">{{ page.description }}</div>
-        <div v-if="page.tags" :class="$style.tags">タグ: <NuxtLink v-for="tag in page.tags" :to="`/blog/tags/${tag}`" :class="$style.tag">{{ tag }}</NuxtLink></div>
+        <div v-if="page.tags" :class="$style.tags">タグ: <NuxtLink v-for="tag in page.tags" :to="`/blog/tags/${tag}`" :class="$style.tag" @click.stop>{{ tag }}</NuxtLink></div>
         <div :class="$style.createdAt"><time :datetime="page.createdAt">{{ showDate(page.createdAt) }}</time></div>
       </div>
-    </a>
+    </div>
   </article>
   <div v-if="props.pages == null || props.pages.length === 0">記事はありません</div>
 </template>
@@ -21,7 +21,23 @@ const props = defineProps<{
   pages?: ListContent[] | null
 }>()
 
+const router = useRouter()
+
 const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
+
+const { getThumbnail } = useArticleThumbnail()
+
+const loadedImages = ref(new Set<string>())
+
+const onImageError = (e: Event) => {
+  const target = e.target as HTMLImageElement
+  if (target.src.includes('default-ogp.png')) return // Prevent infinite loop
+  target.src = '/default-ogp.png'
+}
+
+const onImageLoad = (path: string) => {
+  loadedImages.value.add(path)
+}
 </script>
 <style module>
 .pageLink {
@@ -32,6 +48,7 @@ const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLoca
   color: var(--text-normal);
   text-decoration: none;
   border-radius: 8px;
+  cursor: pointer;
 }
 .imgContainer {
   &:empty::before {
@@ -46,6 +63,9 @@ const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLoca
   align-self: center;
   position: relative;
   background-color: rgba(var(--text-normal-rgb), 0.5);
+  background-image: url('/default-ogp.png');
+  background-size: cover;
+  background-position: center;
   /* 1200 * 630 -> 400 * 210 (1/3 x) */
   flex-basis: 400px;
   flex-shrink: 0;
@@ -62,6 +82,11 @@ const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLoca
     object-fit: contain;
     border-radius: 8px 0 0 8px;
   }
+}
+
+.loaded {
+  background-image: none !important;
+  background-color: transparent !important;
 }
 
 .details {
@@ -113,6 +138,8 @@ const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLoca
   .imgContainer {
     flex-basis: 100%;
     width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 630;
     margin-right: 0;
     border-radius: 8px 8px 0 0;
 

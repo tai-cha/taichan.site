@@ -17,7 +17,7 @@
     "@nuxt/image": "^1.11.0",
     "aiscript-vscode": "file:aiscript-vscode/aiscript/syntaxes",
     "node-html-parser": "^6.1.13",
-    "nuxt": "^3.20.1",
+    "nuxt": "^4.2.1",
     "nuxt-gtag": "^2.1.0",
     "nuxt-jsonld": "^2.2.1",
     "sass": "^1.95.0",

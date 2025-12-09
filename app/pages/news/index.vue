@@ -4,7 +4,7 @@
     <div v-for="page in news">
       <NuxtLink :to="page._path">{{ page.title }} {{ page.createdAt }}</NuxtLink>
     </div>
-    <div v-if="news != null || news!.length > 0">ニュースはありません</div>
+    <div v-if="news == null || news.length <= 0">ニュースはありません</div>
   </main>
 </template>
 <script lang="ts" setup>

@@ -5,7 +5,7 @@ const { data } = await useAsyncData(
   () => queryContent('blog').only(['tags']).find()
 )
 
-const tags = new Set(data.value.map((page) => page.tags).flat())
+const tags = new Set(data.value?.map((page) => page.tags).flat() || [])
 
 useSeoMeta({
   ogTitle: `ブログ記事のタグ一覧`,

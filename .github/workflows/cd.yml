@@ -57,13 +57,17 @@ jobs:
           Manager: ${{ steps.detect-package-manager.outputs.manager }}
         run: |
           corepack enable
-          corepack use $Manager
+          if corepack prepare --activate; then
+            echo "Corepack prepared from package.json"
+          else
+            echo "package.json has no packageManager field, falling back to use"
+            corepack use $Manager
+          fi
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "24"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { ParsedContent } from '@nuxt/content';
+import type { BlogCollectionItem } from '@nuxt/content';
 
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
+const { data: page } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
 const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 
 const runtimeConfig = useRuntimeConfig()
@@ -11,18 +11,20 @@ if (!page.value) {
   throw createError({ statusCode: 404, message: 'ページが見つかりません' })
 }
 
-(inject('page') as Ref<ParsedContent | undefined>).value = page.value
+const post = page.value
+
+;(inject('page') as Ref<BlogCollectionItem | undefined>).value = post
 
 useSeoMeta({
-  ogTitle: page.value.title,
-  description: page.value.description,
+  ogTitle: post.title,
+  description: post.description,
   ogType: 'article',
-  ogImage: `${runtimeConfig.public.baseUrl}${page.value.thumbnail}`,
-  articlePublishedTime: page.value.createdAt,
-  articleModifiedTime: page.value.updatedAt,
-  twitterImage: `${runtimeConfig.public.baseUrl}${page.value.thumbnail}`,
+  ogImage: `${runtimeConfig.public.baseUrl}${post.thumbnail}`,
+  articlePublishedTime: post.createdAt,
+  articleModifiedTime: post.updatedAt,
+  twitterImage: `${runtimeConfig.public.baseUrl}${post.thumbnail}`,
   twitterCard: 'summary_large_image',
-  robots: page.value.noindex ? 'noindex' : undefined,
+  robots: post.noindex ? 'noindex' : undefined,
 })
 
 definePageMeta({
@@ -32,10 +34,10 @@ definePageMeta({
 useJsonld({
   '@context': 'https://schema.org',
   '@type': 'Article',
-  headline: page.value.title,
-  description: page.value.description,
-  datePublished: page.value.createdAt,
-  dateModified: page.value.updatedAt,
+  headline: post.title,
+  description: post.description,
+  datePublished: post.createdAt,
+  dateModified: post.updatedAt,
   author: [{
     '@type': 'Person',
     name: 'taichan'
@@ -45,27 +47,17 @@ useJsonld({
 </script>
 <template>
   <main>
-    <ContentDoc>
-      <template v-slot="{ doc }">
-        <h1 id="title">{{ doc.title }}</h1>
-        <span :class="$style.createdAt">公開日: <time :datetime="doc.createdAt">{{ showDate(doc.createdAt) }}</time></span>
-        <span v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :class="$style.updatedAt">更新日: <time v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :datetime="doc.createdAt">{{ showDate(doc.updatedAt) }}</time></span>
-        <ContentRenderer :value="doc" />
+    <div v-if="page">
+        <h1 id="title">{{ page.title }}</h1>
+        <span :class="$style.createdAt">公開日: <time :datetime="page.createdAt">{{ showDate(page.createdAt) }}</time></span>
+        <span v-if="page.updatedAt != null && page.createdAt !== page.updatedAt" :class="$style.updatedAt">更新日: <time v-if="page.updatedAt != null && page.createdAt !== page.updatedAt" :datetime="page.createdAt">{{ showDate(page.updatedAt) }}</time></span>
+        <ContentRenderer :value="page" />
         <div :class="$style.tags">
-          タグ: <NuxtLink v-for="tag in doc.tags" :to="`/blog/tags/${tag}`" :class="$style.tag">{{ tag }}</NuxtLink>
+          タグ: <NuxtLink v-for="tag in page.tags" :to="`/blog/tags/${tag}`" :class="$style.tag">{{ tag }}</NuxtLink>
         </div>
         <hr :class="$style.endingHR">
-        <ShareButtons :text="`${doc.title} | taichanのサイト`" />
-      </template>
-      <template #not-found>
-        <h1>404 Not Found</h1>
-        <p>アクセスしたページが見つかりませんでした。</p>
-      </template>
-      <template #empty>
-        <h1>Empty</h1>
-        <p>このページは空です</p>
-      </template>
-    </ContentDoc>
+        <ShareButtons :text="`${page.title} | taichanのサイト`" />
+    </div>
   </main>
 </template>
 <style module>

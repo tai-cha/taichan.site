@@ -14,7 +14,7 @@
 import { withTrailingSlash, withLeadingSlash, joinURL } from 'ufo'
 import { useRuntimeConfig, computed, resolveComponent } from '#imports'
 
-const imgComponent = useRuntimeConfig().public.mdc.useNuxtImage ? resolveComponent('NuxtImg') : 'img'
+const imgComponent = useRuntimeConfig().public.useNuxtImageInMdc ? resolveComponent('NuxtImg') : 'img'
 
 const props = defineProps({
   src: {

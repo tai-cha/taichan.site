@@ -20,7 +20,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type { ParsedContent, TocLink } from '@nuxt/content';
+import type { BlogCollectionItem, NewsCollectionItem, TocLink } from '@nuxt/content';
 
 const {
   activeHeadings,
@@ -31,13 +31,14 @@ const route = useRoute();
 const links = ref<TocLink[] | undefined>();
 const title = ref<string | undefined>();
 
-const provided = inject('page') as Ref<ParsedContent | undefined>;
+const provided = inject('page') as Ref<BlogCollectionItem| NewsCollectionItem | undefined>;
 
-if (provided.value != null && provided.value._path == route.path) {
+if (provided.value != null && provided.value.path == route.path) {
   title.value = provided.value.title;
-  links.value = provided.value.toc.links;
+  links.value = provided.value.body?.toc?.links;
 } else {
-  const { data: page } = await useAsyncData(`toc-${route.path}`, () => queryContent(route.path).findOne())
+  const collection = route.path.startsWith('/blog') ? 'blog' : route.path.startsWith('/news') ? 'news' : route.path.startsWith('/docs') ? 'docs' : 'pages';
+  const { data: page } = await useAsyncData(`toc-${route.path}`, () => queryCollection(collection).path(route.path).first())
   title.value = page.value?.title;
   links.value = page.value?.body?.toc?.links
 }

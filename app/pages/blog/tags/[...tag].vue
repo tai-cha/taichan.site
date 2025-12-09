@@ -3,7 +3,7 @@ const route = useRoute();
 const tag = typeof route.params.tag === 'string' ? route.params.tag : route.params.tag?.[0]
 const { data: pages } = await useAsyncData(
   route.path,
-  () => queryContent('blog').only(['_path', 'title', 'description', 'tags', 'thumbnail', 'createdAt', 'updatedAt', 'draft']).where({ tags: { $contains: tag }, draft: false }).find()
+  () => queryCollection('blog').select('path', 'title', 'description', 'tags', 'thumbnail', 'createdAt', 'updatedAt', 'draft').where('tags', 'LIKE', `%"${tag}"%`).where('draft', '=', false).all()
 )
 
 if (tag == null || tag == '') {

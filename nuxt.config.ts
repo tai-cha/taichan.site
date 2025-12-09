@@ -1,19 +1,16 @@
-import type { BundledTheme } from "shiki";
 import generateSitemap from "./scripts/generate-sitemap";
 
+const themeConfig: Record<string, BundledTheme> = {
+  default: 'one-light',
+  'theme-light': 'one-light',
+  'theme-dark': 'solarized-dark',
+}
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  modules: [
-    '@nuxt/content',
-    '@nuxthq/studio',
-    "@nuxt/image",
-    "@nuxt/icon",
-    "nuxt-gtag",
-    "nuxt-jsonld"
-  ],
+  modules: ['@nuxt/content', "@nuxt/image", "@nuxt/icon", "nuxt-gtag", "nuxt-jsonld", 'nuxt-studio'],
 
   icon: {
     customCollections: [
@@ -41,19 +38,32 @@ export default defineNuxtConfig({
   },
 
   content: {
-    highlight: {
-      theme: {
-        default: 'one-light' as BundledTheme,
-        "theme-light": "one-light" as BundledTheme,
-        "theme-dark": "solarized-dark",
-      },
-      langs: ['js','ts','jsx','tsx','json','json5','vue','css','html','vue','shell','bash','zsh','ruby','yml','docker','bat','csharp','sql','diff','erb','md','ps','sass',]
-    },
+    build: {
+      markdown: {
+        highlight: {
+          theme: themeConfig,
+          langs: ['js','ts','jsx','tsx','json','json5','vue','css','html','vue','shell','bash','zsh','ruby','yml','docker','bat','csharp','sql','diff','erb','md','ps','sass',]
+        }
+      }
+    }
+  },
+
+  studio: {
+    repository: {
+      provider: 'github',
+      owner: 'ta-cha',
+      repo: 'taichan.site',
+      branch: 'master',
+    }
   },
 
   runtimeConfig: {
     public: {
       baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+      useNuxtImageInMdc: true,
+      highlight: {
+        theme: themeConfig
+      }
     }
   },
 
@@ -70,6 +80,7 @@ export default defineNuxtConfig({
     '/news/**': { prerender: true },
     '/docs/**': { prerender: true },
     '/links': { prerender: true },
+    '/privacy-policy': { prerender: true },
     '/404.html': { prerender: true },
   },
 
@@ -89,6 +100,7 @@ export default defineNuxtConfig({
         '/news',
         '/docs',
         '/links',
+        '/privacy-policy',
         '/404.html',
       ]
     },

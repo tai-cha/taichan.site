@@ -2,7 +2,7 @@
 const route = useRoute();
 const { data } = await useAsyncData(
   route.path,
-  () => queryContent('blog').only(['tags']).find()
+  () => queryCollection('blog').select('tags').all()
 )
 
 const tags = new Set(data.value?.map((page) => page.tags).flat() || [])

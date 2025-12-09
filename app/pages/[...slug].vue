@@ -1,15 +1,16 @@
+<script setup lang="ts">
+const route = useRoute()
+const { data: page } = await useAsyncData(route.path, () => queryCollection('pages').path(route.path).first())
+</script>
 <template>
   <main>
-    <ContentDoc :path="$route.path">
-      <template #not-found>
+    <div v-if="page">
+      <ContentRenderer :value="page" />
+    </div>
+    <div v-else>
         <h1>404 Not Found</h1>
         <p>アクセスしたページが見つかりませんでした。</p>
-      </template>
-      <template #empty>
-        <h1>Empty</h1>
-        <p>このページは空です</p>
-      </template>
-    </ContentDoc>
+    </div>
   </main>
 </template>
 <style>

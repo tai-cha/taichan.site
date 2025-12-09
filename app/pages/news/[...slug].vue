@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { ParsedContent } from '@nuxt/content';
+import type { NewsCollectionItem } from '@nuxt/content';
 
 const route = useRoute();
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
+const { data: page } = await useAsyncData(route.path, () => queryCollection('news').path(route.path).first())
 const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })
 
 const runtimeConfig = useRuntimeConfig()
@@ -11,42 +11,34 @@ if (!page.value) {
   throw createError({ statusCode: 404, message: 'ページが見つかりません' })
 }
 
-(inject('page') as Ref<ParsedContent | undefined>).value = page.value
+const post = page.value
+
+;(inject('page') as Ref<NewsCollectionItem | undefined>).value = post
 
 useSeoMeta({
-  ogTitle: page.value.title,
-  description: page.value.description,
+  ogTitle: post.title,
+  description: post.description,
   ogType: 'article',
-  ogImage: `${runtimeConfig.public.baseUrl}${page.value.thumbnail}`,
-  articlePublishedTime: page.value.createdAt,
-  articleModifiedTime: page.value.updatedAt,
+  ogImage: `${runtimeConfig.public.baseUrl}${post.thumbnail}`,
+  articlePublishedTime: post.createdAt,
+  articleModifiedTime: post.updatedAt,
   twitterCard: 'summary_large_image',
-  robots: page.value.noindex ? 'noindex' : undefined,
+  robots: post.noindex ? 'noindex' : undefined,
 })
 
 </script>
 <template>
   <main>
-    <ContentDoc>
-      <template v-slot="{ doc }">
-        <h1 id="title">{{ doc.title }}</h1>
-        <span :class="$style.createdAt">公開日: <time :datetime="doc.createdAt">{{ showDate(doc.createdAt) }}</time></span>
-        <span v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :class="$style.updatedAt">更新日: <time v-if="doc.updatedAt != null && doc.createdAt !== doc.updatedAt" :datetime="doc.createdAt">{{ showDate(doc.updatedAt) }}</time></span>
-        <ContentRenderer :value="doc" />
+    <div v-if="page">
+        <h1 id="title">{{ page.title }}</h1>
+        <span :class="$style.createdAt">公開日: <time :datetime="page.createdAt">{{ showDate(page.createdAt) }}</time></span>
+        <span v-if="page.updatedAt != null && page.createdAt !== page.updatedAt" :class="$style.updatedAt">更新日: <time v-if="page.updatedAt != null && page.createdAt !== page.updatedAt" :datetime="page.createdAt">{{ showDate(page.updatedAt) }}</time></span>
+        <ContentRenderer :value="page" />
         <hr :class="$style.endingHR">
         <div>
-          タグ: <span v-for="tag in doc.tags" :class="$style.tag">{{ tag }}</span>
+          タグ: <span v-for="tag in page.tags" :class="$style.tag">{{ tag }}</span>
         </div>
-      </template>
-      <template #not-found>
-        <h1>404 Not Found</h1>
-        <p>アクセスしたページが見つかりませんでした。</p>
-      </template>
-      <template #empty>
-        <h1>Empty</h1>
-        <p>このページは空です</p>
-      </template>
-    </ContentDoc>
+    </div>
   </main>
 </template>
 <style module>

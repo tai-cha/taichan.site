@@ -1,6 +1,6 @@
 <template>
   <article v-for="page in props.pages">
-    <a :class="$style.pageLink" :href="page._path">
+    <a :class="$style.pageLink" :href="page.path">
       <div :class="$style.imgContainer"><NuxtImg v-if="page.thumbnail != null" :src="page.thumbnail" format="webp" /></div>
       <div :class="$style.details">
         <div :class="$style.title">{{ page.title }}</div>
@@ -13,8 +13,9 @@
   <div v-if="props.pages == null || props.pages.length === 0">記事はありません</div>
 </template>
 <script lang="ts" setup>
-import type { ParsedContent } from '@nuxt/content';
-export type ListContent = Pick<ParsedContent, "tags" | "title" | "description" | "_path" | "thumbnail" | "createdAt" | "updatedAt" | "draft">;
+import type { BlogCollectionItem } from '@nuxt/content';
+
+export type ListContent = Pick<BlogCollectionItem, "tags" | "title" | "description" | "path" | "thumbnail" | "createdAt" | "updatedAt" | "draft">;
 
 const props = defineProps<{
   pages?: ListContent[] | null

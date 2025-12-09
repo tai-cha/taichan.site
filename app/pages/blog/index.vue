@@ -5,7 +5,7 @@
   </main>
 </template>
 <script lang="ts" setup>
-const { data: blogs } = await useAsyncData('blogs', () => queryContent('blog').only(['_path', 'title', 'description', 'tags', 'thumbnail', 'createdAt', 'updatedAt', 'draft']).where({ draft: false }).sort({ createdAt: -1 }).find())
+const { data: blogs } = await useAsyncData('blogs', () => queryCollection('blog').select('path', 'title', 'description', 'tags', 'thumbnail', 'createdAt', 'updatedAt', 'draft').where('draft', '=', false).order('createdAt', 'DESC').all())
 
 useSeoMeta({
   title: 'ブログ一覧',

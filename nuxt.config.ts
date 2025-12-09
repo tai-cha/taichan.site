@@ -63,6 +63,16 @@ export default defineNuxtConfig({
     },
   },
 
+  routeRules: {
+    '/': { prerender: true },
+    '/about': { prerender: true },
+    '/blog/**': { prerender: true },
+    '/news/**': { prerender: true },
+    '/docs/**': { prerender: true },
+    '/links': { prerender: true },
+    '/404.html': { prerender: true },
+  },
+
   nitro: {
     esbuild: {
       options: {

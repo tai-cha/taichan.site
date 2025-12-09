@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     fonts: [
       'BIZ+UDPGothic:400',
       'BIZ+UDPGothic:700',
-      { name: 'KodomoRounded', weight: 400, path: '/fonts/KodomoRounded.otf' },
+      { name: 'KodomoRounded', weight: 400, path: 'https://taichan.site/fonts/KodomoRounded.otf' },
     ],
     defaults: { component: 'Default' }
   },

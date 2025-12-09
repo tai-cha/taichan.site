@@ -7,7 +7,7 @@ const { data: pages } = await useAsyncData(
 )
 
 if (tag == null || tag == '') {
-  throw createError({ statusCode: 404, statusMessage: 'ページが見つかりません' })
+  throw createError({ statusCode: 404, message: 'ページが見つかりません' })
 }
 
 useSeoMeta({

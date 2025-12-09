@@ -37,7 +37,7 @@ if (provided.value != null && provided.value._path == route.path) {
   title.value = provided.value.title;
   links.value = provided.value.toc.links;
 } else {
-  const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
+  const { data: page } = await useAsyncData(`toc-${route.path}`, () => queryContent(route.path).findOne())
   title.value = page.value?.title;
   links.value = page.value?.body?.toc?.links
 }

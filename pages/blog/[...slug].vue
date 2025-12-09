@@ -8,7 +8,7 @@ const showDate = (dateString: string) => new Date(Date.parse(dateString)).toLoca
 const runtimeConfig = useRuntimeConfig()
 
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'ページが見つかりません' })
+  throw createError({ statusCode: 404, message: 'ページが見つかりません' })
 }
 
 (inject('page') as Ref<ParsedContent | undefined>).value = page.value

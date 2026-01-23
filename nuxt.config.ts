@@ -51,7 +51,7 @@ export default defineNuxtConfig({
   studio: {
     repository: {
       provider: 'github',
-      owner: 'ta-cha',
+      owner: 'tai-cha',
       repo: 'taichan.site',
       branch: 'master',
     }

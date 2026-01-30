@@ -81,7 +81,7 @@ export default defineNuxtConfig({
     '/news/**': { prerender: true },
     '/docs/**': { prerender: true },
     '/links': { prerender: true },
-    '/privacy-policy': { prerender: true },
+    '/privacy_policy': { prerender: true },
     '/404.html': { prerender: true },
   },
 

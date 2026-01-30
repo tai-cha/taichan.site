@@ -101,7 +101,7 @@ export default defineNuxtConfig({
         '/news',
         '/docs',
         '/links',
-        '/privacy-policy',
+        '/privacy_policy',
         '/404.html',
       ]
     },

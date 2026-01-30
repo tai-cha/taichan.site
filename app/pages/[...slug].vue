@@ -2,9 +2,6 @@
 const route = useRoute()
 const { data: page } = await useAsyncData(route.path, () => queryCollection('pages').path(route.path).first())
 
-if (!page.value) {
-  throw createError({ statusCode: 404, message: 'ページが見つかりません' })
-}
 </script>
 <template>
   <main>

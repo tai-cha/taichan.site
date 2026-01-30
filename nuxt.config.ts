@@ -1,6 +1,7 @@
 import generateSitemap from "./scripts/generate-sitemap";
+import type { BundledTheme } from "shiki";
 
-const themeConfig: Record<string, BundledTheme> = {
+const themeConfig: {[theme : string]: BundledTheme, default: BundledTheme} = {
   default: 'one-light',
   'theme-light': 'one-light',
   'theme-dark': 'solarized-dark',
